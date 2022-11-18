@@ -41,12 +41,12 @@ header img {
   width: 200px;
 }
 
-.center {
+/* .center {
   display: flex;
   align-items: center;
   justify-content: center;
   
-}
+} */
 
 .search {
   height: 100px;
