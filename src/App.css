@@ -138,3 +138,10 @@ input[type='text'] {
     object-fit: contain;
   }
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  
+}
