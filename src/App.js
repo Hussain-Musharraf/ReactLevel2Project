@@ -1,50 +1,58 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import './App.css';
-import CharacterGrid from './components/characters/CharacterGrid';
-import Header from './components/ui/Header';
-import Search from './components/ui/Search';
-import Pagination from './components/Pagination';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import "./App.css";
+import CharacterGrid from "./components/characters/CharacterGrid";
+import Header from "./components/ui/Header";
+import Search from "./components/ui/Search";
+import Pagination from "./components/Pagination";
 
-const  App= () => {
+const App = () => {
   //main-content function
-  const [items,setItems]=useState([])
-  const [isLoading,setIsLoading]=useState(true)
-  const [query,setQuery]=useState('');
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [query, setQuery] = useState("");
 
   //Pagination function
-  const [currentPage,setCurrentPage]=useState(1);
-  const [itemsPerPage]=useState(8);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(8);
 
-
-useEffect(()=>{
-  const fetchItems= async ()=>{
-    const result=await axios(`https://www.breakingbadapi.com/api/characters?name=${query}`)
-    // console.log(result.data)
-    setItems(result.data)
-    setIsLoading(false)
-  }
-  fetchItems()
-},[query]);
+  useEffect(() => {
+    const fetchItems = async () => {
+      const result = await axios(
+        `https://www.breakingbadapi.com/api/characters?name=${query}`
+      );
+      // console.log(result.data)
+      setCurrentPage(1);
+      setItems(result.data);
+      setIsLoading(false);
+    };
+    fetchItems();
+  }, [query]);
 
   //Get current page
-const indexOfLastPost =currentPage*itemsPerPage;
-const indexOfFirstPost=indexOfLastPost-itemsPerPage;
-const currentItems=items.slice(indexOfFirstPost,indexOfLastPost);
+  const endIndex = currentPage * itemsPerPage;
+  const startIndex = endIndex - itemsPerPage;
+  const currentItems = items.slice(startIndex, endIndex);
 
-   //Change page
-const paginate=(pageNumber)=>setCurrentPage(pageNumber);
+  //Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="container">
-      <Header/>
-      <Search getQuery={(q)=>setQuery(q)}/>
-      <CharacterGrid isLoading={isLoading} items={currentItems}/>
-      <div className='pagination'>
-        <Pagination itemsPerPage={itemsPerPage} totalItems={items.length} paginate={paginate}/>
-      </div>
+
+        <Header />
+
+        <Search getQuery={(q) => setQuery(q)} />
+
+        <CharacterGrid isLoading={isLoading} items={currentItems} />
+
+        <div className="pagination">
+
+            <Pagination itemsPerPage={itemsPerPage} totalItems={items.length} paginate={paginate}/>
+            
+        </div>
     </div>
   );
-}
+};
 
 export default App;
