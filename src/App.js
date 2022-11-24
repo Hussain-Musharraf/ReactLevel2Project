@@ -2,9 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./App.css";
 import CharacterGrid from "./components/characters/CharacterGrid";
-import Header from "./components/ui/Header";
-import Search from "./components/ui/Search";
-import Pagination from "./components/Pagination";
+import Header from "./components/Header/Header";
+import Search from "./components/Search/Search";
+import Pagination from "./components/Pagination/Pagination";
 
 const App = () => {
   //main-content function

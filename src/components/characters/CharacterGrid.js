@@ -1,5 +1,5 @@
 import React from 'react'
-import Spinner from '../ui/Spinner'
+import Spinner from '../Spinner/Spinner'
 import CharacterItem from './CharacterItem'
 
 const CharacterGrid = ({items,isLoading}) => {
