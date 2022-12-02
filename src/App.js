@@ -39,17 +39,11 @@ const App = () => {
 
   return (
     <div className="container">
-
         <Header />
-
         <Search getQuery={(q) => setQuery(q)} />
-
         <CharacterGrid isLoading={isLoading} items={currentItems} />
-
         <div className="pagination">
-
-            <Pagination itemsPerPage={itemsPerPage} totalItems={items.length} paginate={paginate}/>
-            
+            <Pagination itemsPerPage={itemsPerPage} totalItems={items.length} paginate={paginate}/>  
         </div>
     </div>
   );
